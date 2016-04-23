@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/rails/jbuilder.git
+  revision: 64c510ec69d9e63b73ffd5942e802d21a7d14701
+  branch: master
+  specs:
+    jbuilder (2.4.1)
+      activesupport (>= 3.0.0, < 5.1)
+      multi_json (~> 1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -55,9 +64,6 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
-    jbuilder (2.4.1)
-      activesupport (>= 3.0.0, < 5.1)
-      multi_json (~> 1.2)
     json (1.8.3)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
@@ -166,7 +172,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   factory_girl_rails (~> 4.0)
-  jbuilder (~> 2.0)
+  jbuilder!
   listen (~> 3.0.5)
   mysql2 (>= 0.3.18, < 0.5)
   pry-rails
