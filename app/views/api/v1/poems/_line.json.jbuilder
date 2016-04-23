@@ -1,0 +1,1 @@
+json.(line, :id, :line_text, :count)
