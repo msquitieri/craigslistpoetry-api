@@ -1,0 +1,2 @@
+class PoetryLine < ApplicationRecord
+end
