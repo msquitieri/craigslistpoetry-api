@@ -9,4 +9,4 @@ script:
 
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - mysql -e 'create database craigslistpoetry-api_test'
+  - mysql -e 'create database `craigslistpoetry-api_test`'
