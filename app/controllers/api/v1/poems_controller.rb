@@ -11,4 +11,8 @@ class Api::V1::PoemsController < Api::V1::ApiController
     @poem = Poem.includes(:lines).find(params[:id])
   end
 
+  def create
+    @poem = Poem.generate_poem!
+  end
+
 end
