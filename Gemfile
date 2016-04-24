@@ -24,6 +24,7 @@ group :development, :test do
   # Rspec tells you to put it in both development and test groups
   # https://github.com/rspec/rspec-rails#installation
   gem 'rspec-rails', '~> 3.0'
+  gem 'faker'
 end
 
 group :test do
