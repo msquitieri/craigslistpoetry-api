@@ -2,3 +2,11 @@ language: ruby
 
 services:
   - mysql
+
+script:
+  - bundle exec rake db:test:prepare
+  - bundle exec rake
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - mysql -e 'create database craigslistpoetry-api_test'
