@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423043835) do
+ActiveRecord::Schema.define(version: 20160424030601) do
 
   create_table "lines", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=latin1" do |t|
     t.integer  "post_id"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20160423043835) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at"
   end
+
+  add_index "lines", ["count"], name: "index_lines_on_count", using: :btree
 
   create_table "poem_lines", force: :cascade, options: "ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci" do |t|
     t.integer  "poem_id"
