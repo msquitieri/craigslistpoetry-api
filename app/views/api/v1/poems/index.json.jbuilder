@@ -1,0 +1,1 @@
+json.poems @poems, partial: 'poem', as: :poem
