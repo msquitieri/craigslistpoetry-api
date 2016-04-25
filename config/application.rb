@@ -31,5 +31,6 @@ module CraigslistpoetryApi
       g.test_framework :rspec
     end
 
+    config.active_record.schema_format = :sql
   end
 end
