@@ -27,7 +27,13 @@ class Api::V1::ApiController < ApplicationController
   end
 
   def check_api_key
-    unless passed_api_key == 'funfunfun'
+    partner = nil
+
+    if passed_api_key.present?
+      partner = ApiPartner.where(api_key: passed_api_key).first
+    end
+
+    unless partner.present?
       render_unauthorized(:auth, 'Invalid API key')
     end
   end
