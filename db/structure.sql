@@ -109,8 +109,8 @@ DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `link` varchar(80) DEFAULT NULL,
-  `created_at` date NOT NULL,
-  `updated_at` date NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=77990 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
