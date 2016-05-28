@@ -9,6 +9,10 @@ RSpec.describe Line, :type => :model do
       is_expected.to have_db_column(:updated_at)
       is_expected.to have_db_column(:created_at)
     end
+
+    it 'has its relationships' do
+      is_expected.to belong_to(:post)
+    end
   end
 
 end
