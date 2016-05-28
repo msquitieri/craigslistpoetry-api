@@ -65,7 +65,7 @@ CREATE TABLE `poem_lines` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `poem_id` (`poem_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=33061 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33711 DEFAULT CHARSET=latin1 COLLATE=latin1_german2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +80,7 @@ CREATE TABLE `poems` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3307 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3372 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,10 +91,11 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `link` varchar(80) DEFAULT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`post_id`)
+  `created_at` date NOT NULL,
+  `updated_at` date NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=76439 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -142,7 +143,7 @@ CREATE TABLE `shared` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-25  0:26:57
-INSERT INTO schema_migrations (version) VALUES ('20160423035723'), ('20160423040130'), ('20160423040316'), ('20160423041119'), ('20160423043512'), ('20160423043835'), ('20160424030601');
+-- Dump completed on 2016-05-27 22:35:36
+INSERT INTO schema_migrations (version) VALUES ('20160423035723'), ('20160423040130'), ('20160423040316'), ('20160423041119'), ('20160423043512'), ('20160423043835'), ('20160424030601'), ('20160528022948'), ('20160528023039');
 
 
