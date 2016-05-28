@@ -15,7 +15,7 @@ RSpec.describe ApiPartner, :type => :model do
 
   describe 'api_key' do
     it 'always sets one before saving' do
-      partner = build(:api_partner)
+      partner = build(:api_partner, api_key: nil)
 
       expect(partner.api_key).to be_blank
       partner.save!

@@ -7,7 +7,7 @@ class ApiPartner < ApplicationRecord
 
   def ensure_api_key
     if api_key.blank?
-      api_key = Digest::SHA2.hexdigest("#{SecureRandom.uuid.to_s}").first(30)
+      self.api_key = Digest::SHA2.hexdigest("#{SecureRandom.uuid.to_s}").first(30)
     end
   end
 end
