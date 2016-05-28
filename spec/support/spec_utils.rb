@@ -1,16 +1,12 @@
 module SpecUtils
-  def api_header
+  def api_header(api_key)
     {
-        'X-api-key' => valid_api_key
+        'X-api-key' => api_key
     }
   end
 
   def no_params
     {}
-  end
-
-  def valid_api_key
-    'funfunfun'
   end
 
   def response_json
