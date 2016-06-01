@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.27, for osx10.11 (x86_64)
 --
--- Host: localhost    Database: craigslistpoetry-api_test
+-- Host: localhost    Database: craigslistpoetry-api_development
 -- ------------------------------------------------------
 -- Server version	5.6.27
 
@@ -14,6 +14,22 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `admin_users`
+--
+
+DROP TABLE IF EXISTS `admin_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `api_partners`
@@ -30,7 +46,7 @@ CREATE TABLE `api_partners` (
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_api_partners_on_api_key` (`api_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,7 +165,7 @@ CREATE TABLE `shared` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database 'craigslistpoetry-api_test'
+-- Dumping routines for database 'craigslistpoetry-api_development'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -161,7 +177,7 @@ CREATE TABLE `shared` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-27 23:57:52
-INSERT INTO schema_migrations (version) VALUES ('20160423035723'), ('20160423040130'), ('20160423040316'), ('20160423041119'), ('20160423043512'), ('20160423043835'), ('20160424030601'), ('20160528022948'), ('20160528032220'), ('20160528034953'), ('20160528035424');
+-- Dump completed on 2016-05-28 20:00:09
+INSERT INTO schema_migrations (version) VALUES ('20160423035723'), ('20160423040130'), ('20160423040316'), ('20160423041119'), ('20160423043512'), ('20160423043835'), ('20160424030601'), ('20160528022948'), ('20160528024848'), ('20160528032220'), ('20160528034953'), ('20160528035424');
 
 
