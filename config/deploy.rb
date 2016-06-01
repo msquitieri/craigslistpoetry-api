@@ -40,13 +40,11 @@ set :default_env, { path: "/opt/rbenv/shims:$PATH" }
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
-set :passenger_restart_with_touch, true
-
 namespace :deploy do
 
   after :restart, :clear_cache do
     on roles(:app), in: :groups, limit: 3, wait: 10 do
-      # execute :touch, release_path.join('tmp/restart.txt')
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 

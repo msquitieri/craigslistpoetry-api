@@ -11,7 +11,6 @@ gem 'puma'
 gem 'jbuilder', :git => 'https://github.com/rails/jbuilder.git', branch: :master
 # Use Redis adapter to run Action Cable in production
 
-gem "capistrano-passenger"
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
 
