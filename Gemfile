@@ -11,7 +11,10 @@ gem 'puma'
 gem 'jbuilder', :git => 'https://github.com/rails/jbuilder.git', branch: :master
 # Use Redis adapter to run Action Cable in production
 
+gem "capistrano-passenger"
 gem 'therubyracer', platforms: :ruby
+gem 'execjs'
+
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
