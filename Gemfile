@@ -11,8 +11,7 @@ gem 'puma'
 gem 'jbuilder', :git => 'https://github.com/rails/jbuilder.git', branch: :master
 # Use Redis adapter to run Action Cable in production
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'therubyracer', platforms: :ruby
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
@@ -35,6 +34,10 @@ group :test do
 end
 
 group :development do
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-rails'
+
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
