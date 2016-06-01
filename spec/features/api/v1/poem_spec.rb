@@ -39,12 +39,28 @@ RSpec.describe '/poems', :type => :request do
     end
   end
 
-
   describe 'GET /:id' do
     it 'returns a poem' do
       poem = create(:poem)
 
       get api_v1_poem_path(poem), no_params, api_header(partner.api_key)
+
+      expect(response_json['poem']['id']).to eq(poem.id)
+      expect(response_json['poem']['lines'].count).to eq(10)
+    end
+  end
+
+  describe 'POST /' do
+    it 'creates a poem' do
+      expect(Poem).to receive(:generate_poem!).once.and_call_original
+
+      expect(Poem.count).to eq(0)
+
+      post api_v1_poems_path, no_params, api_header(partner.api_key)
+
+      expect(Poem.count).to eq(1)
+
+      poem = Poem.first
 
       expect(response_json['poem']['id']).to eq(poem.id)
       expect(response_json['poem']['lines'].count).to eq(10)
