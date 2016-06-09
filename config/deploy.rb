@@ -42,11 +42,12 @@ set :keep_releases, 5
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
+  task :restart_unicorn do
     on roles(:app), in: :groups, limit: 3, wait: 10 do
-      execute :touch, release_path.join('tmp/restart.txt')
+      execute "kill -9 `cat #{current_path}/tmp/pids/unicorn.pid`"
+      execute "cd #{current_path} ; /opt/rbenv/shims/bundle exec unicorn -c /u/apps/craigslistpoetry-api_production/shared/config/unicorn.rb -E production -D"
     end
   end
 
-  after :publishing, :restart
+  after :finished, :restart_unicorn
 end
