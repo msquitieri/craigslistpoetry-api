@@ -83,6 +83,7 @@ GEM
       activesupport (>= 4.1.0)
     i18n (0.7.0)
     json (1.8.3)
+    kgio (2.10.0)
     libv8 (3.16.14.15)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
@@ -143,6 +144,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    raindrops (0.16.0)
     rake (11.1.2)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
@@ -188,6 +190,9 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unicorn (5.1.0)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
     web-console (3.1.1)
       activemodel (>= 4.2)
       debug_inspector
@@ -220,6 +225,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   therubyracer
   tzinfo-data
+  unicorn
   web-console
   will_paginate
 
