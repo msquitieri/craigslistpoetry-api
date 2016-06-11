@@ -14,6 +14,6 @@ class Poem < ApplicationRecord
       lines.push(additional_lines).flatten!
     end
 
-    poem = Poem.create!(lines: lines)
+    Poem.create!(lines: lines)
   end
 end
