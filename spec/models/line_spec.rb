@@ -15,4 +15,10 @@ RSpec.describe Line, :type => :model do
     end
   end
 
+  it 'is allowed to have a nil post_id' do
+    line = build(:line, post_id: nil)
+
+    expect(line).to be_valid
+  end
+
 end
