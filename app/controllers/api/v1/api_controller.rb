@@ -23,6 +23,12 @@ class Api::V1::ApiController < ApplicationController
     case error.class.name
       when 'ActiveRecord::RecordNotFound'
         render_message(:error, 'Record not found.', 404)
+      else
+        if Rails.env.production?
+          render_message(:error, 'An unexpected error occurred', 500)
+        else
+          raise error
+        end
     end
   end
 
