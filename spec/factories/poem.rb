@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :poem do
     after(:create) do |poem|
-      10.times.each do
+      Poem::LINE_COUNT.times.each do
         poem.lines << create(:line)
       end
     end
