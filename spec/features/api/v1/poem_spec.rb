@@ -48,6 +48,17 @@ RSpec.describe '/poems', :type => :request do
       expect(response_json['poem']['id']).to eq(poem.id)
       expect(response_json['poem']['lines'].count).to eq(10)
     end
+
+    it 'returns lines in the order of the poem_lines' do
+      poem  = create(:poem)
+      lines = poem.poem_lines.order('id asc').map(&:line).compact.map(&:line_text)
+
+      get api_v1_poem_path(poem), no_params, api_header(partner.api_key)
+
+      lines.each_with_index do |line, idx|
+        expect(response_json['poem']['lines'][idx]).to eq(line)
+      end
+    end
   end
 
   describe 'POST /' do
