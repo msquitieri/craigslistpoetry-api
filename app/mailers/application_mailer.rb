@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'support@craigslistpoetry.com'
+  default from: 'michael.squitieri@gmail.com'
   layout 'mailer'
 end
