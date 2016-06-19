@@ -36,7 +36,11 @@ module CraigslistpoetryApi
 
     config.action_mailer.delivery_method = :smtp
 
-    smtp_settings                      = YAML.load(File.read(Rails.root.join('config', 'smtp.yml')))[Rails.env]
-    config.action_mailer.smtp_settings = smtp_settings.try(:symbolize_keys!)
+    smtp_file = Rails.root.join('config', 'smtp.yml')
+    if File.exists?(smtp_file)
+      smtp_settings                      = YAML.load(File.read(smtp_file))[Rails.env]
+      config.action_mailer.smtp_settings = smtp_settings.try(:symbolize_keys!)
+    end
+
   end
 end
