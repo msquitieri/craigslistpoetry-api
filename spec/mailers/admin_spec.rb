@@ -6,9 +6,9 @@ RSpec.describe AdminMailer, :type => :mailer do
     let(:mail) { AdminMailer.activity(admin.email) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Activity")
+      expect(mail.subject).to eq("Your Daily Poems Count")
       expect(mail.to).to eq([admin.email])
-      expect(mail.from).to eq(["support@craigslistpoetry.com"])
+      expect(mail.from).to eq(["michael.squitieri@gmail.com"])
     end
 
     context 'when no poems have been generated' do
