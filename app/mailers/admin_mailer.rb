@@ -8,6 +8,6 @@ class AdminMailer < ApplicationMailer
   def activity(email)
     @poem_count = Poem.where('created_at > ?', Date.today - 1.day).count
 
-    mail to: email
+    mail to: email, subject: 'Your Daily Poems Count'
   end
 end

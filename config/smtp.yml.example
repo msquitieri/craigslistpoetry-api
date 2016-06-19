@@ -1,0 +1,16 @@
+default: &default
+  address: email-smtp.us-east-1.amazonaws.com
+  port: 587
+  domain: lentalert.com
+  authentication: plain
+  enable_starttls_auto: true
+
+production:
+  <<: *default
+  user_name: USER_NAME
+  password: PASSWORD
+
+development:
+  <<: *default
+  user_name: USER_NAME
+  password: PASSWORD

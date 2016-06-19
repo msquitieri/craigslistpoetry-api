@@ -11,6 +11,7 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+require 'yaml'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -32,5 +33,14 @@ module CraigslistpoetryApi
     end
 
     config.active_record.schema_format = :sql
+
+    config.action_mailer.delivery_method = :smtp
+
+    smtp_file = Rails.root.join('config', 'smtp.yml')
+    if File.exists?(smtp_file)
+      smtp_settings                      = YAML.load(File.read(smtp_file))[Rails.env]
+      config.action_mailer.smtp_settings = smtp_settings.try(:symbolize_keys!)
+    end
+
   end
 end
