@@ -6,7 +6,7 @@ set :repo_url, 'https://github.com/msquitieri/craigslistpoetry-api.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-set :branch, :deployment
+set :branch, :master
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/u/apps/craigslistpoetry-api_production/'
