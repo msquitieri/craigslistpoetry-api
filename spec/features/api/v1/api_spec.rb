@@ -6,7 +6,7 @@ RSpec.describe '/api/v1', :type => :request do
   describe 'error handling' do
     it 'returns a 500 error message if an error is thrown and it is in production' do
       allow(Rails.env).to receive(:production?).and_return(true)
-      allow(Poem).to receive(:generate_poem!).and_raise('Error')
+      allow(Poem).to receive(:generate!).and_raise('Error')
 
       post api_v1_poems_path, no_params, api_header(partner.api_key)
 

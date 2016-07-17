@@ -63,7 +63,7 @@ RSpec.describe '/poems', :type => :request do
 
   describe 'POST /' do
     it 'creates a poem' do
-      expect(Poem).to receive(:generate_poem!).once.and_call_original
+      expect(Poem).to receive(:generate!).once.and_call_original
 
       expect(Poem.count).to eq(0)
 

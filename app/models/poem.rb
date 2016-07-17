@@ -12,7 +12,7 @@ class Poem < ApplicationRecord
 
   after_create :increment_line_count
 
-  def self.generate_poem!
+  def self.generate!
     # TODO: Using order => RAND() is not performant. Consider another method.
     lines = Line.unused.random.first(LINE_COUNT)
 
