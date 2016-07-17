@@ -12,7 +12,7 @@ class Poem < ApplicationRecord
 
   def self.generate_poem!
     # TODO: Using order => RAND() is not performant. Consider another method.
-    lines = Line.where(count: 0).random.first(LINE_COUNT)
+    lines = Line.unused.random.first(LINE_COUNT)
 
     # No longer have unused lines, go and find any you need.
     if lines.count != LINE_COUNT

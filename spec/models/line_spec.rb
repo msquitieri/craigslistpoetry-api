@@ -15,6 +15,17 @@ RSpec.describe Line, :type => :model do
     end
   end
 
+  describe 'scopes' do
+    describe '.unused' do
+      it 'returns lines with a count of 0' do
+        zero_count_lines = create_list(:line, 10, count: 0)
+        create_list(:line, 15, count: 15)
+
+        expect(Line.unused.to_a).to eq(zero_count_lines)
+      end
+    end
+  end
+
   it 'is allowed to have a nil post_id' do
     line = build(:line, post_id: nil)
 
