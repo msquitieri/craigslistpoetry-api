@@ -9,21 +9,21 @@ RSpec.describe Poem, :type => :model do
     end
 
     it 'has its relationships' do
-      is_expected.to have_many(:poem_lines)
+      is_expected.to have_many(:poem_lines).dependent(:delete_all)
       is_expected.to have_many(:lines)
     end
   end
 
   describe '#generate_poem!' do
     it 'creates a new poem' do
-      expect { Poem.generate_poem! }.to change { Poem.count }.from(0).to(1)
+      expect { Poem.generate! }.to change { Poem.count }.from(0).to(1)
     end
 
     it 'takes 10 random lines with count 0' do
       create_list(:line, 10, count: 0)
       create_list(:line, 30, count: 10)
 
-      poem = Poem.generate_poem!
+      poem = Poem.generate!
 
       expect(poem.lines.count).to eq(10)
       expect(poem.lines.all? { |line| line.count.zero? }).to eq(true)
@@ -35,19 +35,19 @@ RSpec.describe Poem, :type => :model do
       create_list(:line, 7, count: 0)
       create_list(:line, 30, count: 5)
 
-      poem = Poem.generate_poem!
+      lines_with_zero_count = Line.where(count: 0).to_a
 
-      lines_with_zero_count = poem.lines.where(count: 0)
-      lines_without_zero_count = poem.lines.where.not(count: 0)
+      poem = Poem.generate!
 
-      expect(lines_with_zero_count.count).to eq(7)
-      expect(lines_without_zero_count.count).to eq(3)
+      lines_with_zero_count.each do |line|
+        expect(poem.lines).to include(line)
+      end
     end
 
     it 'takes the lines in random order' do
       create_list(:line, 30)
 
-      poem = Poem.generate_poem!
+      poem = Poem.generate!
 
       line_ids = poem.lines.pluck(:id).sort
 
@@ -61,6 +61,23 @@ RSpec.describe Poem, :type => :model do
       end
 
       expect(sequential_order.all? { |order| order == true}).to eq(false)
+    end
+
+    it 'updates the use count of the lines it selected' do
+      Line.destroy_all
+
+      create_list(:line, 10, count: 3)
+
+      poem = Poem.generate!
+      poem.reload
+
+      poem.lines.each do |line|
+        puts line.count
+      end
+
+      all_counts_are_one = poem.lines.all? { |line| line.count == 4 }
+
+      expect(all_counts_are_one).to eq(true)
     end
   end
 

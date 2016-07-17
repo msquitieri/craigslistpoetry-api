@@ -1,5 +1,7 @@
 class Poem < ApplicationRecord
-  has_many :poem_lines
+  LINE_COUNT = 10
+
+  has_many :poem_lines, dependent: :delete_all
   has_many :lines, through: :poem_lines do
     # TODO: Not a huge fan of this, but cannot get a
     # default_scope working with the has_many :through.
@@ -8,11 +10,11 @@ class Poem < ApplicationRecord
     end
   end
 
-  LINE_COUNT = 10
+  after_create :increment_line_count
 
-  def self.generate_poem!
+  def self.generate!
     # TODO: Using order => RAND() is not performant. Consider another method.
-    lines = Line.where(count: 0).random.first(LINE_COUNT)
+    lines = Line.unused.random.first(LINE_COUNT)
 
     # No longer have unused lines, go and find any you need.
     if lines.count != LINE_COUNT
@@ -22,4 +24,11 @@ class Poem < ApplicationRecord
 
     Poem.create!(lines: lines)
   end
+
+  private
+
+  def increment_line_count
+    self.lines.update_all('count = count + 1')
+  end
+
 end
