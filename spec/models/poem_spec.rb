@@ -14,7 +14,7 @@ RSpec.describe Poem, :type => :model do
     end
   end
 
-  describe '#generate_poem!' do
+  describe '#generate!' do
     it 'creates a new poem' do
       expect { Poem.generate! }.to change { Poem.count }.from(0).to(1)
     end
@@ -35,13 +35,11 @@ RSpec.describe Poem, :type => :model do
       create_list(:line, 7, count: 0)
       create_list(:line, 30, count: 5)
 
-      lines_with_zero_count = Line.where(count: 0).to_a
+      lines_with_nonzero_count = Line.where.not(count: 0).to_a
 
       poem = Poem.generate!
 
-      lines_with_zero_count.each do |line|
-        expect(poem.lines).to include(line)
-      end
+      expect((lines_with_nonzero_count & poem.lines).length).to be > 0
     end
 
     it 'takes the lines in random order' do

@@ -1,6 +1,8 @@
 class Poem < ApplicationRecord
   include Lineable
 
+  LINE_COUNT = 10
+
   has_many :poem_lines, dependent: :delete_all
   has_many :lines, through: :poem_lines do
     # TODO: Not a huge fan of this, but cannot get a
@@ -11,7 +13,7 @@ class Poem < ApplicationRecord
   end
 
   def self.generate!
-    lines = fetch_unused_lines
+    lines = Line.fetch_unused_lines(LINE_COUNT)
 
     Poem.create!(lines: lines)
   end
