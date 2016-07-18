@@ -7,13 +7,6 @@ FactoryGirl.define do
     end
   end
 
-  factory :line do |line|
-    line.line_text { Faker::Lorem.sentence }
-    line.count 0
-
-    line.association(:post)
-  end
-
   factory :post do |post|
     post.link do
       borough = %w(brx brk mnh wch lgi jsy).sample
