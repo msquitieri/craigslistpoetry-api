@@ -1,5 +1,5 @@
 class Poem < ApplicationRecord
-  LINE_COUNT = 10
+  include Lineable
 
   has_many :poem_lines, dependent: :delete_all
   has_many :lines, through: :poem_lines do
@@ -10,25 +10,9 @@ class Poem < ApplicationRecord
     end
   end
 
-  after_create :increment_line_count
-
   def self.generate!
-    # TODO: Using order => RAND() is not performant. Consider another method.
-    lines = Line.unused.random.first(LINE_COUNT)
-
-    # No longer have unused lines, go and find any you need.
-    if lines.count != LINE_COUNT
-      additional_lines = Line.random.where.not(id: lines.map(&:id)).first(LINE_COUNT - lines.count)
-      lines.push(additional_lines).flatten!
-    end
+    lines = fetch_unused_lines
 
     Poem.create!(lines: lines)
   end
-
-  private
-
-  def increment_line_count
-    self.lines.update_all('count = count + 1')
-  end
-
 end
