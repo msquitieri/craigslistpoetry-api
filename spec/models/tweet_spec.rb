@@ -26,7 +26,7 @@ RSpec.describe Tweet, :type => :model do
     it 'returns the text of the tweet' do
       tweet = create(:tweet)
 
-      expect(tweet.tweet_text).to eq(tweet.lines.in_order.pluck(:line_text).join(' / '))
+      expect(tweet.tweet_text).to eq(tweet.lines.in_order.pluck(:line_text).join(Tweet::TWEET_LINE_SEPARATOR))
     end
 
     it 'sanitizes the line text' do
