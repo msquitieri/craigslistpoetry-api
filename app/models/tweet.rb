@@ -2,7 +2,7 @@ class Tweet < ApplicationRecord
   include Lineable
 
   TWEET_LENGTH = 135
-  TWEET_LINE_SEPARATOR = ' / '
+  TWEET_LINE_SEPARATOR = "\n"
   FETCH_LINES_COUNT = 10
 
   has_many :tweet_lines, dependent: :delete_all
@@ -12,6 +12,13 @@ class Tweet < ApplicationRecord
     def in_order
       order('tweet_lines.id asc')
     end
+  end
+
+  def send!
+    raise 'Cannot send a tweet that already has a twitter_id' if self.twitter_id.present?
+
+    response = Tweeter.instance.tweet(tweet_text)
+    update_attribute(:twitter_id, response.id)
   end
 
   def self.generate!

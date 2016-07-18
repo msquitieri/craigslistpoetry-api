@@ -14,6 +14,14 @@ RSpec.describe Tweet, :type => :model do
     end
   end
 
+  describe '.send!' do
+    it 'raises an error if the twitter_id is already set' do
+      tweet = create(:tweet, twitter_id: 123456)
+
+      expect { tweet.send! }.to raise_error('Cannot send a tweet that already has a twitter_id')
+    end
+  end
+
   describe '.tweet_text' do
     it 'returns the text of the tweet' do
       tweet = create(:tweet)
