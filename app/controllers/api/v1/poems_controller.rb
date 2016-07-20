@@ -12,7 +12,7 @@ class Api::V1::PoemsController < Api::V1::ApiController
   end
 
   def create
-    @poem = Poem.generate_poem!
+    @poem = Poem.generate!
   end
 
 end

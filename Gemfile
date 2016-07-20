@@ -11,6 +11,8 @@ gem 'puma'
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 
+gem 'twitter'
+
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
 
