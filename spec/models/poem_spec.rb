@@ -69,10 +69,6 @@ RSpec.describe Poem, :type => :model do
       poem = Poem.generate!
       poem.reload
 
-      poem.lines.each do |line|
-        puts line.count
-      end
-
       all_counts_are_one = poem.lines.all? { |line| line.count == 4 }
 
       expect(all_counts_are_one).to eq(true)
