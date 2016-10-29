@@ -38,6 +38,9 @@ module CraigslistpoetryApi
 
     config.action_mailer.delivery_method = :smtp
 
+    config.action_cable.mount_path = '/api/v1/stream'
+    config.action_cable.allowed_request_origins = ['http://localhost:4200', 'https://craigslistpoetry.com']
+
     smtp_file = Rails.root.join('config', 'smtp.yml')
     if File.exists?(smtp_file)
       smtp_settings                      = YAML.load(File.read(smtp_file))[Rails.env]
