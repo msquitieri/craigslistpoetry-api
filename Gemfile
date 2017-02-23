@@ -52,6 +52,8 @@ group :development do
   gem 'pry-rails'
   gem 'web-console'
 
+  gem 'annotate'
+
   # Use Puma as the app server
   gem 'puma'
 end

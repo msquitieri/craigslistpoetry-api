@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: lines
+#
+#  id         :integer          not null, primary key
+#  post_id    :integer
+#  line_text  :text(65535)
+#  count      :integer          default(0)
+#  created_at :datetime         not null
+#  updated_at :datetime
+#  live       :boolean          default(FALSE), not null
+#
+
 class Line < ApplicationRecord
   belongs_to :post, optional: true
 

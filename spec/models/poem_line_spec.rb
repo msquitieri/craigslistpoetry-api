@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: poem_lines
+#
+#  poem_id    :integer
+#  line_id    :integer
+#  created_at :datetime         not null
+#  id         :integer          not null, primary key
+#  updated_at :datetime
+#
+
 require 'rails_helper'
 
 RSpec.describe PoemLine, :type => :model do

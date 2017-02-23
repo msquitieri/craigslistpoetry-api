@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: api_partners
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  api_key    :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class ApiPartner < ApplicationRecord
   before_create :ensure_api_key
 
