@@ -8,6 +8,7 @@ RSpec.describe Line, :type => :model do
       is_expected.to have_db_column(:count)
       is_expected.to have_db_column(:updated_at)
       is_expected.to have_db_column(:created_at)
+      is_expected.to have_db_column(:live)
     end
 
     it 'has its relationships' do
@@ -22,6 +23,15 @@ RSpec.describe Line, :type => :model do
         create_list(:line, 15, count: 15)
 
         expect(Line.unused.to_a.all? { |line| line.count.zero? }).to eq(true)
+      end
+    end
+
+    describe '.live' do
+      it 'returns lines that are live' do
+        create_list(:line, 10, live: true)
+        create_list(:line, 15, live: false)
+
+        expect(Line.live.to_a.all?(&:live?)).to eq(true)
       end
     end
   end

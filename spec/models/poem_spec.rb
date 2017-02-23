@@ -19,14 +19,15 @@ RSpec.describe Poem, :type => :model do
       expect { Poem.generate! }.to change { Poem.count }.from(0).to(1)
     end
 
-    it 'takes 10 random lines with count 0' do
+    it 'takes 10 random live lines with count 0' do
       create_list(:line, 10, count: 0)
-      create_list(:line, 30, count: 10)
+      create_list(:line, 30, count: 10, live: false)
 
       poem = Poem.generate!
 
       expect(poem.lines.count).to eq(10)
       expect(poem.lines.all? { |line| line.count.zero? }).to eq(true)
+      expect(poem.lines.all?(&:live?)).to eq(true)
     end
 
     it 'takes lines without count = 0 if none are left' do
