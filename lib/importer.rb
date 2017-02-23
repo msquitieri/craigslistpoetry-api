@@ -1,8 +1,4 @@
 class Importer
-  # TODO: Create a default flag on posts called 'processed'
-  # that defaults to false. When created, the flag is false.
-  # Create another method called import_lines that iterates over
-  # all of the posts that have 'processed' as false and get their lines.
   def self.import_posts
     Rails.logger.info('Beginning import of posts...')
 
@@ -23,5 +19,41 @@ class Importer
     created_posts.compact!
 
     Rails.logger.info("Successfully created #{created_posts.count} #{'post'.pluralize(created_posts.count)} to database.")
+  end
+
+  def self.import_lines
+    Rails.logger.info('Beginning import of lines...')
+
+    total = Post.unprocessed.count
+
+    Rails.logger.info("#{total} #{'post'.pluralize(total)} to be processed.")
+
+    Post.unprocessed.find_each do |post|
+      Rails.logger.info("Processing Post ##{post.id}: #{post.link}.")
+
+      lines = LineFetcher.fetch(post.link)
+      Rails.logger.info("Found #{lines.count} lines to be added.")
+      lines_persisted = lines.inject(0) do |num, line|
+        begin
+          if Line.create(line_text: line, post_id: post.id)
+            add = 1
+          else
+            add = 0
+          end
+        rescue => e
+          Rails.logger.error("ERROR: #{e.message}")
+          add = 0
+        end
+
+        num + add
+      end
+
+      post.update_attributes(processed: true)
+
+      Rails.logger.info("Persisted #{lines_persisted} lines to database.")
+      Rails.logger.info('Post processed.')
+    end
+
+    Rails.logger.info('Done.')
   end
 end
