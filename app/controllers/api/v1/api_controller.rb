@@ -13,6 +13,10 @@ class Api::V1::ApiController < ApplicationController
     render_message(root, message, 401)
   end
 
+  def render_unprocessable_entity(root, object)
+    render_message(root, object.errors.full_messages.join(', '), 422)
+  end
+
   def render_message(root, message, status)
     render json: { root => { message: message } }, status: status
   end

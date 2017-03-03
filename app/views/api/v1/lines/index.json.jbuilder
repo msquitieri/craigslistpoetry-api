@@ -1,0 +1,1 @@
+json.lines @lines, partial: 'api/v1/shared/line', as: :line

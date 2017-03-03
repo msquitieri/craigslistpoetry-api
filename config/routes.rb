@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :poems, only: [:index, :show, :create]
+      resources :lines, only: [:index, :show, :update]
     end
   end
 
