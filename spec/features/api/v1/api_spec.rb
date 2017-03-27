@@ -8,7 +8,7 @@ RSpec.describe '/api/v1', :type => :request do
       allow(Rails.env).to receive(:production?).and_return(true)
       allow(Poem).to receive(:generate!).and_raise('Error')
 
-      post api_v1_poems_path, no_params, api_header(partner.api_key)
+      post api_v1_poems_path, params: no_params, headers: api_header(partner.api_key)
 
       expect(response.status).to eq(500)
       expect(response_json['error']['message']).to eq('An unexpected error occurred')
