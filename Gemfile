@@ -14,6 +14,8 @@ gem 'twitter'
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
 
+gem 'nokogiri', '1.6.8'
+
 group :production, :staging do
   gem 'unicorn'
 end
