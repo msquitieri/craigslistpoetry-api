@@ -7,7 +7,7 @@ RSpec.describe '/poems', :type => :request do
     it 'requires an api partner' do
       create_list(:poem, 10)
 
-      get api_v1_poems_path, no_params, api_header('blah')
+      get api_v1_poems_path, params: no_params, headers: api_header('blah')
 
       expect(response.status).to eq(401)
       expect(response_json['auth']['message']).to eq('Invalid API key')
@@ -16,7 +16,7 @@ RSpec.describe '/poems', :type => :request do
     it 'returns an array of poems in order of id desc' do
       create_list(:poem, 10)
 
-      get api_v1_poems_path, no_params, api_header(partner.api_key)
+      get api_v1_poems_path, params: no_params, headers: api_header(partner.api_key)
 
       expect(response_json['poems'].count).to eq(10)
       ids = response_json['poems'].map { |poem| poem['id'] }
@@ -28,12 +28,12 @@ RSpec.describe '/poems', :type => :request do
     it 'is paginated' do
       create_list(:poem, 30)
 
-      get api_v1_poems_path(:per_page => 10), no_params, api_header(partner.api_key)
+      get api_v1_poems_path(:per_page => 10), params: no_params, headers: api_header(partner.api_key)
 
       expect(response_json['poems'].count).to eq(10)
       first_id = response_json['poems'].first['id']
 
-      get api_v1_poems_path(:per_page => 10, :page => 2), no_params, api_header(partner.api_key)
+      get api_v1_poems_path(:per_page => 10, :page => 2), params: no_params, headers: api_header(partner.api_key)
 
       expect(response_json['poems'].first['id']).to eq(first_id - 10)
     end
@@ -43,7 +43,7 @@ RSpec.describe '/poems', :type => :request do
     it 'returns a poem' do
       poem = create(:poem)
 
-      get api_v1_poem_path(poem), no_params, api_header(partner.api_key)
+      get api_v1_poem_path(poem), params: no_params, headers: api_header(partner.api_key)
 
       expect(response_json['poem']['id']).to eq(poem.id)
       expect(response_json['poem']['lines'].count).to eq(10)
@@ -53,7 +53,7 @@ RSpec.describe '/poems', :type => :request do
       poem  = create(:poem)
       lines = poem.poem_lines.order('id asc').map(&:line).compact.map(&:line_text)
 
-      get api_v1_poem_path(poem), no_params, api_header(partner.api_key)
+      get api_v1_poem_path(poem), params: no_params, headers: api_header(partner.api_key)
 
       lines.each_with_index do |line, idx|
         expect(response_json['poem']['lines'][idx]).to eq(line)
@@ -67,7 +67,7 @@ RSpec.describe '/poems', :type => :request do
 
       expect(Poem.count).to eq(0)
 
-      post api_v1_poems_path, no_params, api_header(partner.api_key)
+      post api_v1_poems_path, params: no_params, headers: api_header(partner.api_key)
 
       expect(Poem.count).to eq(1)
 
