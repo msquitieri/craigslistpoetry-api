@@ -14,8 +14,6 @@ gem 'twitter'
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
 
-gem 'nokogiri', '1.6.8'
-
 group :production, :staging do
   gem 'unicorn'
 end
@@ -25,7 +23,7 @@ gem 'rack-cors'
 
 gem 'will_paginate'
 gem 'httparty'
-gem 'nokogiri'
+gem 'nokogiri', '1.6.8'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
