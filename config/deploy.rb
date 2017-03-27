@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.6.1'
+lock '3.8.0'
 
 set :application, 'craigslistpoetry-api'
 set :repo_url, 'https://github.com/msquitieri/craigslistpoetry-api.git'
