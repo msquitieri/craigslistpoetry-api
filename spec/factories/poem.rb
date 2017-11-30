@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :poem do
     after(:create) do |poem|
       Poem::LINE_COUNT.times.each do
