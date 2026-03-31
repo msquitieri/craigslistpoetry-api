@@ -109,7 +109,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.2)
     multipart-post (2.0.0)
-    mysql2 (0.4.10)
+    mysql2 (0.5.3)
     naught (1.1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -240,7 +240,7 @@ DEPENDENCIES
   faker
   jbuilder
   listen (~> 3.0.5)
-  mysql2 (>= 0.3.18, < 0.5)
+  mysql2 (>= 0.3.18, < 0.6)
   nokogiri (= 1.6.8)
   pry-rails
   puma
